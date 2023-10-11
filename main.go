@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	db, err := sql.Open("mysql", "root:Google/45@tcp(172.17.0.2:3306)/")
+	db, err := sql.Open("mysql", "root:Google/45@tcp(172.19.0.2:3306)/")
 	if err != nil {
 		fmt.Println("1")
 		log.Fatal(err)
@@ -101,8 +101,7 @@ func main() {
 	})
 
 	http.HandleFunc("/delete", func(w http.ResponseWriter, r *http.Request) {
-		id := r.PostForm.Get("delete") // Get the value of the delete button
-
+		id := r.PostForm.Get("delete")
 		_, err := db.Exec("DELETE FROM tasks WHERE id = ?", id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
