@@ -14,19 +14,22 @@ import (
 
 func main() {
 
-	db, err := sql.Open("mysql", "mysql:Google/45@tcp(172.17.0.2:3306)/")
+	db, err := sql.Open("mysql", "root:Google/45@tcp(172.17.0.2:3306)/")
 	if err != nil {
+		fmt.Println("1")
 		log.Fatal(err)
 	}
 	defer db.Close()
 
 	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS todoapp")
 	if err != nil {
+		fmt.Println("1")
 		log.Fatal(err)
 	}
 
 	_, err = db.Exec("USE todoapp")
 	if err != nil {
+		fmt.Println("1")
 		log.Fatal(err)
 	}
 
@@ -36,6 +39,7 @@ func main() {
         completed BOOLEAN
     )`)
 	if err != nil {
+		fmt.Println("1")
 		log.Fatal(err)
 	}
 
