@@ -1,0 +1,14 @@
+.task {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+}
+
+.task.completed {
+    background-color: #cfc;
+}
+
+.description.completed {
+    text-decoration: line-through;
+}

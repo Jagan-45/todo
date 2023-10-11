@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="description" placeholder="Add a task..." required>
+        <button type="submit">Add</button>
+    </form>
+    {{range .}}
+    <div class="task{{if .Completed}} completed{{end}}">
+        <form action="/update" method="POST">
+            <input type="hidden" name="id" value="{{.ID}}">
+            <input type="checkbox" class="complete" name="complete" {{if .Completed}}checked{{end}}>
+            <span class="description{{if .Completed}} completed{{end}}">{{.Description}}</span>
+            <button class="delete" name="delete" value="{{.ID}}">Delete</button>
+        </form>
+    </div>
+    {{end}}
+</body>
+</html>
