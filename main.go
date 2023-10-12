@@ -8,15 +8,32 @@ import (
 	"net/http"
 	_ "os"
 	"strconv"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
 
-	db, err := sql.Open("mysql", "user:password@tcp(db:3307)/")
+	maxRetries := 10
+	retryDelay := time.Second * 5
+
+	var db *sql.DB
+	var err error
+
+	for retries := 0; retries < maxRetries; retries++ {
+		db, err = sql.Open("mysql", "user:password@tcp(db:3307)/")
+		if err != nil {
+			log.Printf("Error connecting to the database: %v", err)
+			log.Printf("Retrying in %v...", retryDelay)
+			time.Sleep(retryDelay)
+		} else {
+			break
+		}
+	}
+
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Exhausted all retries. Unable to connect to the database.")
 	}
 	defer db.Close()
 
