@@ -22,7 +22,7 @@ func main() {
 	var err error
 
 	for retries := 0; retries < maxRetries; retries++ {
-		db, err = sql.Open("mysql", "user:password@tcp(localhost:3307)/")
+		db, err = sql.Open("mysql", "user:password@tcp(db:3307)/")
 		if err != nil {
 			log.Printf("Error connecting to the database: %v", err)
 			log.Printf("Retrying in %v...", retryDelay)
