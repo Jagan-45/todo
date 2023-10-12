@@ -1,0 +1,10 @@
+# Dockerfile for MySQL
+
+# Use the official MySQL Docker image
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=Google/45
+ENV MYSQL_DATABASE=todoapp
+
+EXPOSE 3306
+

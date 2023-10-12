@@ -14,22 +14,19 @@ import (
 
 func main() {
 
-	db, err := sql.Open("mysql", "root:Google/45@tcp(172.19.0.2:3306)/")
+	db, err := sql.Open("mysql", "user:password@tcp(db:3307)/")
 	if err != nil {
-		fmt.Println("1")
 		log.Fatal(err)
 	}
 	defer db.Close()
 
 	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS todoapp")
 	if err != nil {
-		fmt.Println("1")
 		log.Fatal(err)
 	}
 
 	_, err = db.Exec("USE todoapp")
 	if err != nil {
-		fmt.Println("1")
 		log.Fatal(err)
 	}
 
@@ -39,7 +36,6 @@ func main() {
         completed BOOLEAN
     )`)
 	if err != nil {
-		fmt.Println("1")
 		log.Fatal(err)
 	}
 
@@ -65,6 +61,7 @@ func main() {
 
 		tmpl, err := template.ParseFiles("templates/index.html")
 		if err != nil {
+			fmt.Println("hello")
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
