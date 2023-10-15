@@ -22,7 +22,7 @@ func main() {
 	var err error
 
 	for retries := 0; retries < maxRetries; retries++ {
-		db, err = sql.Open("mysql", "user:password@tcp(db:3307)/todoapp?parseTime=true")
+		db, err = sql.Open("mysql", "root:password@tcp(db:3306)/")
 		if err != nil {
 			log.Printf("Error connecting to the database: %v", err)
 			log.Printf("Retrying in %v...", retryDelay)
